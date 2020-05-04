@@ -2,6 +2,10 @@ import javafx.beans.binding.IntegerBinding;
 
 
 public class WriteBackClass {
+	static boolean controlRegWrite;
+	static boolean controlMemtoReg;
+	static boolean useWB;
+	static String writeRegister;
 	
 	static String ALUresult;
 	static String ReadData;
@@ -11,13 +15,11 @@ public class WriteBackClass {
 		
 		System.out.println("------------------------Performing Write Back------------------------");
 
-		ALUresult= ExecuteClass.ALUresult;
-		ReadData = MemoryAccess.ReadData;
 		
-		String WriteLocation= InstructionDecode.writeRegister;
+		String WriteLocation= writeRegister;
 		
-		if(InstructionDecode.controlRegWrite){
-		if(InstructionDecode.controlMemtoReg){
+		if(controlRegWrite){
+		if(controlMemtoReg){
 			System.out.println("Setting Register no: " + Integer.parseInt(WriteLocation,2) + " ,with address: "+ WriteLocation + " with the Read Data: " + ReadData + " from the memory");
 			RegisterFile.setRegister(ReadData, WriteLocation);
 			

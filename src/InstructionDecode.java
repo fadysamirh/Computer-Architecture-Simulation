@@ -65,7 +65,7 @@ public class InstructionDecode {
 	public static String SignExtend(String sixteenbit){
 		
 		String thirtyTwoBit = sixteenbit;
-		for(int n=thirtyTwoBit.length(); n<32; n++) {
+		for(int n=thirtyTwoBit.length(); n<16; n++) {
 			if(thirtyTwoBit.startsWith("0")){
 				thirtyTwoBit = "0" + thirtyTwoBit;
 			}

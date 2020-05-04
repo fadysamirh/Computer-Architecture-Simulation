@@ -2,10 +2,36 @@
 import java.util.Scanner;
 
 public class ExecuteClass {
+	static boolean controlRegDst;
+	static boolean controlBranch;
+	static boolean controlMemRead;
+	static boolean controlMemtoReg;
+	static boolean controlALUOp1;
+	static boolean controlALUOp0;
+	static boolean controlMemWrite;
+	static boolean controlALUSrc;
+	static boolean controlRegWrite;
+	
+	static String opCode;
+	static String readRegister1;
+	static String readRegister2;
+	static String writeRegister;
+	
+	static boolean useALU;
+	static boolean useMem;
+	static boolean useWB;
+	
+	static String signExtend;
+	static String readData1;
+	static String readData2;
+	static String ALUOP;
+	
+	
+	
+	
 	static String Operand1;
 	static String Operand2;
 	static String Op;
-	
 	
 	static boolean ALUZero;
 	static String ALUresult;
@@ -13,15 +39,15 @@ public class ExecuteClass {
 	public static String Execute() {
 		
 		
-		Op= InstructionDecode.ALUOP;
+		Op= ALUOP;
 		
-		Operand1 = InstructionDecode.readData1;
+		Operand1 = readData1;
 		
-		if(InstructionDecode.controlALUSrc){
-			Operand2 = InstructionDecode.signExtend;
+		if(controlALUSrc){
+			Operand2 = signExtend;
 		}
 		else{
-			Operand2 = InstructionDecode.readData2;
+			Operand2 = readData2;
 		}
 		
 		System.out.println();

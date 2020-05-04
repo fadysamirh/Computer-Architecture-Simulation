@@ -10,6 +10,10 @@ public class InstructionDecode {
 	static boolean controlALUSrc;
 	static boolean controlRegWrite;
 	
+	static boolean useALU;
+	static boolean useMem;
+	static boolean useWB;
+	
 	
 	static String opCode;
 	static String readRegister1;
@@ -30,27 +34,20 @@ public class InstructionDecode {
 		System.out.println("---------------------Starting decoding now---------------------");
 		
 		
-		opCode = instruction.substring(0, 6);
-		func=instruction.substring(26, 32);
-
+		opCode = instruction.substring(0, 4);
 		
 		ContUnit(opCode);
 		String immValue;
 		
-		readRegister1 = instruction.substring(6, 11);
+		readRegister1 = instruction.substring(8, 12);
 		
-		readRegister2= instruction.substring(11, 16);
+		readRegister2= instruction.substring(12,16);
 		
-		if(controlRegDst){
-			writeRegister= instruction.substring(16, 21);
-		}else{
-			writeRegister= instruction.substring(11, 16);
-		}
+		writeRegister= instruction.substring(4,8);	
 		
+		immValue=instruction.substring(8, 16);
 		
-		immValue=instruction.substring(16, 32);
-		
-		signExtend= SignExtend(immValue);
+		signExtend= SignExtend(immValue);//
 		
 		
 		readData1= RegisterFile.getRegister(readRegister1);
@@ -83,94 +80,177 @@ public class InstructionDecode {
 	
 	public static String ContUnit(String opCode){
 		System.out.println("Control Unit:");
-		if(opCode.equals("000000")) {//R-Type
-			
-			 controlRegDst=true;
+		if(opCode.equals("0000")){//add
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			controlRegDst=true;
 			 controlBranch=false;
 			 controlMemRead=false;
 			 controlMemtoReg=false;
-			 controlALUOp1=true;
-			 controlALUOp0=false;
 			 controlMemWrite=false;
 			 controlALUSrc=false;
 			 controlRegWrite=true;
-					}
-		else if(opCode.equals("100011")) {//Load inst
+		} else if(opCode.equals("0001")){//SUB
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0010")){//MUL
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0011")){//OR
+			useALU=true;
+			useMem= false;
+			useWB= true;
 			
-			controlRegDst=false;
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0100")){//ADDI
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			
+			
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=true;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0101")){//AND IM
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=true;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0110")){ //SLL
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=true;
+			 controlRegWrite=true;
+		} else if(opCode.equals("0111")){ //SLR
+			
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=true;
+			 controlRegWrite=true;
+		} 
+		
+		
+		
+		
+		else if(opCode.equals("1010")){// BEQ
+			controlRegDst=true;
+			 controlBranch=true;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=false;
+		} else if(opCode.equals("1011")){//BLT 
+			controlRegDst=true;
+			 controlBranch=true;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=false;
+		} else if(opCode.equals("1100")){//store
+			
+			useALU=false;
+			useMem= true;
+			useWB= false;
+			
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
+			 controlMemWrite=true;
+			 controlALUSrc=false;
+			 controlRegWrite=true;
+		} else if(opCode.equals("1101")){//load
+			useALU=false;
+			useMem= true;
+			useWB= true;
+			
+			controlRegDst=true;
 			 controlBranch=false;
 			 controlMemRead=true;
 			 controlMemtoReg=true;
-			 controlALUOp1=false;
-			 controlALUOp0=false;
+			 controlMemWrite=false;
+			 controlALUSrc=false;
+			 controlRegWrite=true;
+		} else if(opCode.equals("1110")){//slti
+			useALU=true;
+			useMem= false;
+			useWB= true;
+			
+			controlRegDst=true;
+			 controlBranch=false;
+			 controlMemRead=false;
+			 controlMemtoReg=false;
 			 controlMemWrite=false;
 			 controlALUSrc=true;
 			 controlRegWrite=true;
-
-		}
-		else if(opCode.equals("101011")) {//Store inst
+		} else if(opCode.equals("1111")){//jump
+			useALU=false;
+			useMem= false;
+			useWB= false;
 			
-			
-			controlRegDst=true; //x
-			 controlBranch=false;
-			 controlMemRead=false;
-			 controlMemtoReg=true; // x
-			 controlALUOp1=false;
-			 controlALUOp0=false;
-			 controlMemWrite=true;
-			 controlALUSrc=true;
-			 controlRegWrite=false;
-
-
-		}
-		else if(opCode.equals("000100")) {//beq inst
-			controlRegDst=true; //x
+			controlRegDst=true;
 			 controlBranch=true;
 			 controlMemRead=false;
-			 controlMemtoReg=true; //x
-			 controlALUOp1=false;
-			 controlALUOp0=true;
+			 controlMemtoReg=false;
 			 controlMemWrite=false;
-			 controlALUSrc=false;
+			 controlALUSrc=true;
 			 controlRegWrite=false;
-
-			
-		}
-		else{
-			System.out.println("This opCode instruction" + opCode + "does not exist");
-		}
-		
-		System.out.println("Main Control bits are set successfully");
-		System.out.println("[ controlRegDst:"+controlRegDst+
-				" ,controlBranch:"+controlBranch+
-				" ,controlMemRead:"+controlMemRead+
-				" ,controlMemtoReg:"+controlMemtoReg+
-				" ,controlALUOp1:"+controlALUOp1+
-				" ,controlALUOp:"+controlALUOp0+
-				" ,controlMemWrite:"+controlMemWrite+
-				" ,controlALUSrc:"+controlALUSrc
-				+" ,controlRegWrite:" +controlRegWrite+" ] ");
-		System.out.println();
+		} 
 		
 		
-		ALUOP="";
 		
-		if(!controlALUOp1 && !controlALUOp0){//ADD
-			ALUOP="0010";
-		}
-		else if(!controlALUOp1 && controlALUOp0 ){//SUB
-			ALUOP="0110";
-		}
-		else if(controlALUOp1 && !controlALUOp0){//func
-			switch(func) {
-			case "100000": ALUOP = "0010";break;
-			case "100010": ALUOP = "0110";break;
-			case "100100": ALUOP = "0000";break;
-			case "100101": ALUOP = "0001";break;
-			case "101010": ALUOP = "0111";break;
-			default: ALUOP = "111111";
-			}
-		}
+		
+		
+		
 		
 		System.out.println("ALU Controle set successfully and ALUOP= " + ALUOP);
 		System.out.println();

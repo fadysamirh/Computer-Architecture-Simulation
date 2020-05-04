@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class Engine {
 	
-	public static String to32Bits(String old){
+	public static String to16Bits(String old){
 		
 		String thirtyTwoBit = old;
-		for(int n=thirtyTwoBit.length(); n<32; n++) {
+		for(int n=thirtyTwoBit.length(); n<16; n++) {
 				thirtyTwoBit = "0" + thirtyTwoBit;
 			
 		}

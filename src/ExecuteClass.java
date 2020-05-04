@@ -38,13 +38,13 @@ public class ExecuteClass {
 		int ALUresultInt;
 		
 		switch (Op) {
-		case "0000":
-			System.out.println("Operation Name: AND");
+		case "0010":
+			System.out.println("Operation Name: MULT");
 			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
 			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
-			ALUresultInt =Operand1Int& Operand2Int;
+			ALUresultInt =Operand1Int * Operand2Int;
 			
-			ALUresult = Engine.to32Bits(Integer.toBinaryString(ALUresultInt));
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
 			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
 			
 			
@@ -57,14 +57,14 @@ public class ExecuteClass {
 			}
 			// code block
 			break;
-		case "0001":
+		case "0011":
 			System.out.println("Operation Name: OR");
 			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
 			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
 
 			ALUresultInt =Operand1Int | Operand2Int;
 			
-			ALUresult = Engine.to32Bits(Integer.toBinaryString(ALUresultInt));
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
 			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
 			
 			
@@ -79,12 +79,12 @@ public class ExecuteClass {
 
 			// code block
 			break;
-		case "0010":
+		case "0000":
 			System.out.println("Operation Name: add");
 			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
 			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
 			ALUresultInt =Operand1Int + Operand2Int;
-			ALUresult = Engine.to32Bits(Integer.toBinaryString(ALUresultInt));
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
 
 			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
 			if(ALUresultInt==0){
@@ -97,13 +97,31 @@ public class ExecuteClass {
 
 			// code block
 			break;
-		case "0110":
+		case "0100":
+			System.out.println("Operation Name: addi");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+			ALUresultInt =Operand1Int + Operand2Int;
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
+			if(ALUresultInt==0){
+				ALUZero= true;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			}else{
+				ALUZero= false;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			}
+
+			// code block
+			break;
+		case "0001":
 			System.out.println("Operation Name: sub");
 			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
 			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
 			ALUresultInt =Operand1Int - Operand2Int;
 
-			ALUresult = Engine.to32Bits(Integer.toBinaryString(ALUresultInt));
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
 
 			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
 			if(ALUresultInt==0){
@@ -116,8 +134,97 @@ public class ExecuteClass {
 
 			// code block
 			break;
+		case "0101":
+			System.out.println("Operation Name: ANDI");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+			ALUresultInt =Operand1Int & Operand2Int;
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
+			if(ALUresultInt==0){
+				ALUZero= true;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			}else{
+				ALUZero= false;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			}
+			
+		case "0110":
+			System.out.println("Operation Name: SLL");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+			
+			ALUresult = sll(Operand1,Operand2Int);
+			
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
+
+				ALUZero= false;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			
+
+			// code block
+			break;
+			
 		case "0111":
-			System.out.println("Operation Name: slt");
+			System.out.println("Operation Name: SRL");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+			
+			ALUresult = srl(Operand1,Operand2Int);
+			
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
+
+				ALUZero= false;
+				System.out.println("Z-Flag Value: " + ALUZero);
+			
+
+			// code block
+			break;
+		case "1010":
+			System.out.println("Operation Name: BEQ");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+
+			if(Operand1Int==Operand2Int){
+				ALUresultInt= 1;
+				ALUZero=true;
+			}
+			else{
+				ALUresultInt=0;
+				ALUZero=false;
+			}
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + ALUZero);
+
+			// code block
+			break;
+		case "1011":
+			System.out.println("Operation Name: BLT");
+			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
+			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
+
+			if(Operand1Int<Operand2Int){
+				ALUresultInt= 1;
+				ALUZero=true;
+			}
+			else{
+				ALUresultInt=0;
+				ALUZero=false;
+			}
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
+
+			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + ALUZero);
+
+			// code block
+			break;
+
+			// code block
+		case "1110":
+			System.out.println("Operation Name: slti");
 			System.out.println("1st Operand: " + Operand1+ " ,with value of: " + (int)Long.parseLong(Operand1,2));
 			System.out.println("2nd Operand: " + Operand2+ " ,with value of: " + (int)Long.parseLong(Operand2,2));
 
@@ -127,7 +234,7 @@ public class ExecuteClass {
 			else{
 				ALUresultInt=0;
 			}
-			ALUresult = Engine.to32Bits(Integer.toBinaryString(ALUresultInt));
+			ALUresult = Engine.to16Bits(Integer.toBinaryString(ALUresultInt));
 
 			System.out.println("ALUresult: " + ALUresult+ " ,with value of: " + (int)Long.parseLong(ALUresult,2));
 			if(ALUresultInt==0){
@@ -140,6 +247,7 @@ public class ExecuteClass {
 
 			// code block
 			break;
+			
 		default:
 			System.out.println("This operation does not exist");
 		}
@@ -148,6 +256,24 @@ public class ExecuteClass {
 		
 		return ALUresult;
 
+	}
+
+	static String sll(String operand12, int operand2Int) {
+		String newR = Engine.to16Bits(operand12);
+		for(int n= 0; n<operand2Int; n++) {
+			newR =newR + "0";
+			
+		}
+		return newR.substring(newR.length()-16, newR.length());
+	}
+	
+	static String srl(String operand12, int operand2Int) {
+		String newR = Engine.to16Bits(operand12);
+		for(int n= 0; n<operand2Int; n++) {
+			newR ="0" +newR;
+			
+		}
+		return newR.substring(0, 16);
 	}
 
 //	@SuppressWarnings("resource")

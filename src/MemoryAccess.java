@@ -10,7 +10,7 @@ public class MemoryAccess {
 		System.out.println("------------------------Performing Memory Access------------------------");
 		
 		Address = ExecuteClass.ALUresult;
-		WriteData = InstructionDecode.readData2;
+		WriteData = InstructionDecode.readData1;
 		
 		if(InstructionDecode.controlMemRead){
 			ReadData=DataMemory.getData(Address);

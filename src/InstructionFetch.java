@@ -29,11 +29,17 @@ public class InstructionFetch {
 		String nextpC;
 		int pcInt;
 		
-		if(InstructionDecode.controlBranch && ExecuteClass.ALUZero){
+		if((InstructionDecode.controlBranch && ExecuteClass.ALUZero) || (InstructionDecode.controlBranch && InstructionDecode.controlJump)){
 			System.out.println("--------------A JUMP HAS OCCURRED--------------");
-			
 			pcInt = Integer.parseInt(pCAddress,2);
-			String branch=InstructionDecode.signExtend;//
+			String branch;
+			if(InstructionDecode.controlJump){
+				 branch=InstructionDecode.signExtend;
+
+			}else{
+			 branch=InstructionDecode.readData3;
+			}//
+			
 			int branchpCInt = Integer.parseInt(branch,2);
 			pcInt++;
 			

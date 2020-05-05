@@ -10,6 +10,19 @@ public class Engine {
 				thirtyTwoBit = "0" + thirtyTwoBit;
 			
 		}
+		return thirtyTwoBit.substring(thirtyTwoBit.length()-16,thirtyTwoBit.length());
+	}
+	
+	public static String to32Bits(String old){
+		
+		String thirtyTwoBit = old;
+		for(int n=thirtyTwoBit.length(); n<32; n++) {
+			if(thirtyTwoBit.substring(0,1).equals("0")){
+				thirtyTwoBit = "0" + thirtyTwoBit;
+			}else{
+				thirtyTwoBit = "1" + thirtyTwoBit;
+			}
+		}
 		return thirtyTwoBit;
 	}
 	
@@ -18,31 +31,72 @@ public class Engine {
 		ArrayList<String>instructions=new ArrayList<String>();
 		
 		//add
-//		RegisterFile.arrRegister[17]=to32Bits(Integer.toBinaryString(10));
-//		RegisterFile.arrRegister[18]=to32Bits(Integer.toBinaryString(5));
-//		instructions.add("00000010001100101000000000100000");
-//		
-		//sub
-//		RegisterFile.arrRegister[3]=to32Bits(Integer.toBinaryString(-2));
-//		RegisterFile.arrRegister[2]=to32Bits(Integer.toBinaryString(10));
-//		instructions.add("00000000011000100001100000100010");
+//		RegisterFile.arrRegister[1]=to16Bits(Integer.toBinaryString(10));
+//		RegisterFile.arrRegister[2]=to16Bits(Integer.toBinaryString(5));
+//		instructions.add("0000001100100001");
+		
+//		sub
+//		RegisterFile.arrRegister[4]=to16Bits(Integer.toBinaryString(-2));
+//		RegisterFile.arrRegister[5]=to16Bits(Integer.toBinaryString(10));
+//		instructions.add("0001011001000101");
+		
+		
+//		mult
+//		RegisterFile.arrRegister[4]=to16Bits(Integer.toBinaryString(-2));
+//		RegisterFile.arrRegister[5]=to16Bits(Integer.toBinaryString(10));
+//		instructions.add("0010011001000101");
+		
+//		or
+//		RegisterFile.arrRegister[4]="0000000000000000";
+//		RegisterFile.arrRegister[5]="1010101010101010";
+//		instructions.add("0011011001000101");
+		
+//		addi
+//		RegisterFile.arrRegister[6]=to16Bits(Integer.toBinaryString(10));
+//		instructions.add("0100011000000101");
+		
+//		andi
+//		RegisterFile.arrRegister[6]="0101010101010101";
+//		instructions.add("0101011011111111");
+		
+//		SLL
+//		RegisterFile.arrRegister[6]="0000000000000001";
+//		instructions.add("0110011000000011");
+		
+//		SLR
+//		RegisterFile.arrRegister[6]="0000000000100000";
+//		instructions.add("0111011000000011");
 
+		
+		
 		
 		//load
 //		DataMemory.dataList[4]="1111";
-//		RegisterFile.arrRegister[1]=to32Bits(Integer.toBinaryString(0));
-//		RegisterFile.arrRegister[2]=to32Bits(Integer.toBinaryString(2));
-//		instructions.add("10001100001000110000000000000100");
+//		RegisterFile.arrRegister[1]=to16Bits(Integer.toBinaryString(1));
+//		RegisterFile.arrRegister[2]=to16Bits(Integer.toBinaryString(3));
+//		instructions.add("1101001100010010");
 		
 //		//store
-//		RegisterFile.arrRegister[1]=to32Bits(Integer.toBinaryString(3));
-//		RegisterFile.arrRegister[2]=to32Bits(Integer.toBinaryString(3));
-//		instructions.add("10101100001000100000000000000101");
+//		RegisterFile.arrRegister[6]=to16Bits(Integer.toBinaryString(20));
+//		RegisterFile.arrRegister[1]=to16Bits(Integer.toBinaryString(1));
+//		RegisterFile.arrRegister[2]=to16Bits(Integer.toBinaryString(3));
+//		instructions.add("1100001100010010");
 		
 		//beq
-//		RegisterFile.arrRegister[8]="00000000000000000000000000000000";
-//		RegisterFile.arrRegister[0]="00000000000000000000000000000000";
-//		instructions.add("00010001000000000000000000000101");
+//		RegisterFile.arrRegister[1]=to16Bits(Integer.toBinaryString(5));
+//		RegisterFile.arrRegister[2]=to16Bits(Integer.toBinaryString(20));
+//		RegisterFile.arrRegister[3]=to16Bits(Integer.toBinaryString(20));
+//		instructions.add("1010000100100011");
+		
+		//BLT
+//		RegisterFile.arrRegister[1]=to16Bits(Integer.toBinaryString(5));
+//		RegisterFile.arrRegister[2]=to16Bits(Integer.toBinaryString(1));
+//		RegisterFile.arrRegister[3]=to16Bits(Integer.toBinaryString(2));
+//		instructions.add("1011000100100011");
+		
+		//jump
+		instructions.add("1111000000000011");
+		
 		
 		
 		//error instruction

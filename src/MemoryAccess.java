@@ -2,6 +2,7 @@
 public class MemoryAccess {
 
 	static String ALUresult;
+	static String readData1;
 	static String readData2;
 
 	static boolean controlMemRead;
@@ -21,14 +22,14 @@ public class MemoryAccess {
 	public static void memAccess() {
 
 		System.out.println("------------------------Performing Memory Access------------------------");
-
+		
 		Address = ALUresult;
-		WriteData = readData2;
+		WriteData = readData1;
+		
+		if(controlMemRead){
+			ReadData=DataMemory.getData(Address);
+			System.out.println("Reading Data from memory no: "+ Integer.parseInt(Address, 2) +" with address: " + Address);
 
-		if (controlMemRead) {
-			ReadData = DataMemory.getData(Address);
-			System.out.println(
-					"Reading Data from memory no: " + Integer.parseInt(Address, 2) + " with address: " + Address);
 			System.out.println("The Data read is: " + ReadData);
 
 		} else if (controlMemWrite) {

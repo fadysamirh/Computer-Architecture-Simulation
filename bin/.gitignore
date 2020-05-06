@@ -1,11 +1,4 @@
-/Control.class
-/DataMemory.class
-/Engine.class
-/ExecuteClass.class
-/InstructionDecode.class
-/InstructionFetch.class
-/InstructionMemory.class
-/MemoryAccess.class
-/RegisterFile.class
-/WriteBackClass.class
-/test.class
+/DecodeExecutePipe.class
+/ExecuteMemPipe.class
+/FetchDecodePipe.class
+/MemWritePipe.class

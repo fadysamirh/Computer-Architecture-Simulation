@@ -23,7 +23,7 @@ public class InstructionMemory {
 		pInstructions = new ArrayList<String>();
 		
 		for(int i=0;i<Instructions.size();i++) {
-			if(Instructions.get(i).length()==32)
+			if(Instructions.get(i).length()==16)
 			pInstructions.add(Instructions.get(i));
 			else {
 				System.out.println("Wrong Instruction length at index " +i);

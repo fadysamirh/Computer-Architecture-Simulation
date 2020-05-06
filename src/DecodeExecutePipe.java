@@ -29,8 +29,7 @@ public class DecodeExecutePipe {
 		this.controlBranch=InstructionDecode.controlBranch;
 		this.controlMemRead=InstructionDecode.controlMemRead;
 		this.controlMemtoReg=InstructionDecode.controlMemtoReg;
-		this.controlALUOp1=InstructionDecode.controlALUOp1;
-		this.controlALUOp0=InstructionDecode.controlALUOp0;
+
 		this.controlMemWrite=InstructionDecode.controlMemWrite;
 		this.controlALUSrc=InstructionDecode.controlALUSrc;
 		this.controlRegWrite=InstructionDecode.controlRegWrite;

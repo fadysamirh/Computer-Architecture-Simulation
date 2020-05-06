@@ -26,11 +26,9 @@ public class MemoryAccess {
 		Address = ALUresult;
 		WriteData = readData3;
 
-		if (controlMemRead) {
-			ReadData = DataMemory.getData(Address);
-			System.out.println(
-					"Reading Data from memory no: " + Integer.parseInt(Address, 2) + " with address: " + Address);
-
+		if(controlMemRead){
+			ReadData=Cache.readData(Integer.parseInt(Address,2));
+			System.out.println("Reading Data from memory no: "+ Integer.parseInt(Address, 2) +" with address: " + Address);
 			System.out.println("The Data read is: " + ReadData);
 
 		} else if (controlMemWrite) {
@@ -39,6 +37,7 @@ public class MemoryAccess {
 					+ " with address: " + Address);
 
 			DataMemory.setData(WriteData, Address);
+			Cache.readData(Integer.parseInt(Address,2));
 
 		} else {
 			System.out.println("No memory access occured");

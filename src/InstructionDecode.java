@@ -95,6 +95,7 @@ public class InstructionDecode {
 
 	public static String ContUnit(String opCode) {
 		System.out.println("Control Unit:");
+		
 		if (opCode.equals("0000")) {// add
 			useALU = true;
 			useMem = false;
@@ -221,7 +222,6 @@ public class InstructionDecode {
 			useALU = false;
 			useMem = true;
 			useWB = false;
-
 			controlRegDst = true;
 			controlBranch = false;
 			controlMemRead = false;
@@ -234,7 +234,6 @@ public class InstructionDecode {
 			useALU = false;
 			useMem = true;
 			useWB = true;
-
 			controlRegDst = true;
 			controlBranch = false;
 			controlMemRead = true;
@@ -247,7 +246,6 @@ public class InstructionDecode {
 			useALU = true;
 			useMem = false;
 			useWB = true;
-
 			controlRegDst = true;
 			controlBranch = false;
 			controlMemRead = false;
@@ -260,7 +258,6 @@ public class InstructionDecode {
 			useALU = false;
 			useMem = false;
 			useWB = false;
-
 			controlRegDst = false;
 			controlBranch = true;
 			controlMemRead = false;
@@ -271,7 +268,11 @@ public class InstructionDecode {
 			controlJump = true;
 		}
 
-		System.out.println();
+		System.out.println("useALU: "+useALU+" | "+"useMem: "+useMem+" | "+"useWB: "+useWB+" | "
+		+"controlRegDst: "+controlRegDst+" | "+"controlBranch: "+controlBranch+" | "
+				+"controlMemRead: "+controlMemRead+" | "+"controlMemtoReg: "+controlMemtoReg+" | "
+		+"controlMemWrite: "+controlMemWrite+" | "+"controlALUSrc: "+controlALUSrc+" | "
+				+"controlRegWrite: "+controlRegWrite+" | "+ "controlJump: "+controlJump);
 
 		return ALUOP;
 	}

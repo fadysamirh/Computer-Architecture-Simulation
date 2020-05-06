@@ -1,7 +1,11 @@
 
 public class InstructionFetch {
 	
+	static String curInstruction;
 	
+	static int pcInt;
+	static String nextpC;
+
 	public static String InstFetch(String pCAddress){
 		
 		System.out.println("---------------------Fetching instruction---------------------");
@@ -13,7 +17,7 @@ public class InstructionFetch {
 		}
 		else{
 			System.out.println("Instruction successfully fetched");
-			InstructionDecode.InstDecode(curInstruction);
+			InstructionDecode.InstDecode();
 			ExecuteClass.Execute();
 			MemoryAccess.memAccess();
 			WriteBackClass.WriteBack();

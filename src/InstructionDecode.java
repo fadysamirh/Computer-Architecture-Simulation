@@ -28,11 +28,17 @@ public class InstructionDecode {
 	static String readData2;
 	static String ALUOP;
 	
+	static String currInstruction;
+	static int pcInt;
+	static String nextpC;
 	
-	public static void InstDecode(String instruction){
+	
+	public static void InstDecode(){
+		
 		System.out.println();
 		System.out.println("---------------------Starting decoding now---------------------");
 		
+		String instruction=currInstruction;
 		
 		opCode = instruction.substring(0, 4);
 		

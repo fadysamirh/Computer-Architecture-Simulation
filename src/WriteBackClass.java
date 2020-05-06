@@ -1,4 +1,3 @@
-import javafx.beans.binding.IntegerBinding;
 
 
 public class WriteBackClass {

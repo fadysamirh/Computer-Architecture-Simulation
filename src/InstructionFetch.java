@@ -1,3 +1,4 @@
+import java.util.Currency;
 
 public class InstructionFetch {
 	
@@ -17,21 +18,16 @@ public class InstructionFetch {
 		}
 		else{
 			System.out.println("Instruction successfully fetched");
-			InstructionDecode.InstDecode();
-			ExecuteClass.Execute();
-			MemoryAccess.memAccess();
-			WriteBackClass.WriteBack();
 		}
 		
 		ProgCounter(pCAddress);
-		
+		FetchDecodePipe.getFetch(curInstruction, pcInt, nextpC);
 		return curInstruction;
 		
 	}
 	
 	public static void ProgCounter(String pCAddress){
-		String nextpC;
-		int pcInt;
+
 		
 		if((InstructionDecode.controlBranch && ExecuteClass.ALUZero) || (InstructionDecode.controlBranch && InstructionDecode.controlJump)){
 			System.out.println("--------------A JUMP HAS OCCURRED--------------");

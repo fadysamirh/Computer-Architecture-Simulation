@@ -1,9 +1,9 @@
-
 public class MemoryAccess {
 
 	static String ALUresult;
 	static String readData1;
 	static String readData2;
+	static String readData3;
 
 	static boolean controlMemRead;
 	static boolean controlMemWrite;
@@ -22,13 +22,14 @@ public class MemoryAccess {
 	public static void memAccess() {
 
 		System.out.println("------------------------Performing Memory Access------------------------");
-		
+
 		Address = ALUresult;
-		WriteData = readData1;
-		
-		if(controlMemRead){
-			ReadData=DataMemory.getData(Address);
-			System.out.println("Reading Data from memory no: "+ Integer.parseInt(Address, 2) +" with address: " + Address);
+		WriteData = readData3;
+
+		if (controlMemRead) {
+			ReadData = DataMemory.getData(Address);
+			System.out.println(
+					"Reading Data from memory no: " + Integer.parseInt(Address, 2) + " with address: " + Address);
 
 			System.out.println("The Data read is: " + ReadData);
 
@@ -42,7 +43,7 @@ public class MemoryAccess {
 		} else {
 			System.out.println("No memory access occured");
 		}
-
+		MemWritePipe.getMemory(ALUresult, controlRegWrite, controlMemtoReg, useWB, writeRegister, ReadData);
 		System.out.println();
 
 	}

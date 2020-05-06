@@ -1,19 +1,20 @@
 
+
 public class FetchDecodePipe {
 
 	static String currInstruction;
 	static int pcInt;
 	static String nextpC;
 
-	public void getFetch() {
-		this.currInstruction = InstructionFetch.curInstruction;
-		this.pcInt = InstructionFetch.pcInt;
-		this.nextpC = InstructionFetch.nextpC;
+	public static void getFetch(String curInstruction, int pcInt, String nextpC) {
+		FetchDecodePipe.currInstruction =curInstruction;
+		FetchDecodePipe.pcInt = pcInt;
+		FetchDecodePipe.nextpC = nextpC;
 	}
 
-	public void transferDecode() {
-		InstructionDecode.currInstruction = this.currInstruction;
-		InstructionDecode.pcInt = this.pcInt;
-		InstructionDecode.nextpC = this.nextpC;
+	public static void transferDecode() {
+		InstructionDecode.currInstruction = currInstruction;
+		InstructionDecode.pcInt = pcInt;
+		InstructionDecode.nextpC = nextpC;
 	}
 }

@@ -1,8 +1,11 @@
 
+
 public class ExecuteMemPipe {
-	
+
 	static String ALUresult;
+	static String readData1;
 	static String readData2;
+	static String readData3;
 
 	static boolean controlMemRead;
 	static boolean controlMemWrite;
@@ -10,34 +13,43 @@ public class ExecuteMemPipe {
 	static boolean controlMemtoReg;
 	static boolean useMem;
 	static boolean useWB;
-	
+
 	static String writeRegister;
 
+	public static void getExecute(String ALUresult, String readData1, String readData2, String readData3,
 
-	public void getExecute() {
-		this.ALUresult=ExecuteClass.ALUresult;
-		this.readData2=ExecuteClass.readData2;
-		
-		this.controlMemRead=ExecuteClass.controlMemRead;
-		this.controlMemWrite=ExecuteClass.controlMemWrite;
-		this.controlRegWrite=ExecuteClass.controlRegWrite;
-		this.controlMemtoReg=ExecuteClass.controlMemtoReg;
-		this.useMem=ExecuteClass.useMem;
-		this.useWB=ExecuteClass.useWB;
-		
-		this.writeRegister=ExecuteClass.writeRegister;
+			boolean controlMemRead, boolean controlMemWrite, boolean controlRegWrite, boolean controlMemtoReg,
+			boolean useMem, boolean useWB,
+
+			String writeRegister) {
+		ExecuteMemPipe.ALUresult = ALUresult;
+		ExecuteMemPipe.readData1 = readData1;
+		ExecuteMemPipe.readData2 = readData2;
+		ExecuteMemPipe.readData3 = readData3;
+
+		ExecuteMemPipe.controlMemRead = controlMemRead;
+		ExecuteMemPipe.controlMemWrite = controlMemWrite;
+		ExecuteMemPipe.controlRegWrite = controlRegWrite;
+		ExecuteMemPipe.controlMemtoReg = controlMemtoReg;
+		ExecuteMemPipe.useMem = useMem;
+		ExecuteMemPipe.useWB = useWB;
+
+		ExecuteMemPipe.writeRegister = writeRegister;
 	}
-	public void transferMem() {
-		MemoryAccess.ALUresult=this.ALUresult;
-		MemoryAccess.readData2=this.readData2;
-		
-		MemoryAccess.controlMemRead=this.controlMemRead;
-		MemoryAccess.controlMemWrite=this.controlMemWrite;
-		MemoryAccess.controlRegWrite=this.controlRegWrite;
-		MemoryAccess.controlMemtoReg=this.controlMemtoReg;
-		MemoryAccess.useMem=this.useMem;
-		MemoryAccess.useWB=this.useWB;
-		
-		MemoryAccess.writeRegister=this.writeRegister;
+
+	public static void transferMem() {
+		MemoryAccess.ALUresult = ALUresult;
+		MemoryAccess.readData1 = readData1;
+		MemoryAccess.readData2 = readData2;
+		MemoryAccess.readData3 = readData3;
+
+		MemoryAccess.controlMemRead = controlMemRead;
+		MemoryAccess.controlMemWrite = controlMemWrite;
+		MemoryAccess.controlRegWrite = controlRegWrite;
+		MemoryAccess.controlMemtoReg = controlMemtoReg;
+		MemoryAccess.useMem = useMem;
+		MemoryAccess.useWB = useWB;
+
+		MemoryAccess.writeRegister = writeRegister;
 	}
 }
